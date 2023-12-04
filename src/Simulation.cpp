@@ -5,10 +5,9 @@
 #include <omp.h>
 
 Simulation::Simulation(int NumShark, int NumFish, int FishBreed, int SharkBreed, int Starve, int gridSize, int Threads) {
-    omp_set_num_threads(Threads);
     std::srand(time(nullptr)); // Seed the random number generator once
     this->gridSize = gridSize;
-
+    omp_set_num_threads(1);
     createFish(NumFish, FishBreed);
     createShark(NumShark, SharkBreed);
 
@@ -133,25 +132,26 @@ bool Simulation::isRunning() {
 }
 
 void Simulation::run() {
-    int count = 0;
-    double totalElapsed = 0; // Changed to double for precision
-    while (count < 500) { 
+        int count = 0;
+    double totalElapsed = 0;
+    while (count < 300) { 
         count++;
         auto start = std::chrono::high_resolution_clock::now();
-        update();
+        update(); 
         display(SeaCreature::getFishCount(), SeaCreature::getSharkCount());
         deleteCreatures();
 
         auto end = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double, std::milli> elapsed = end - start;
         totalElapsed += elapsed.count();
-        std::cout << "Simulation took " << elapsed.count() << " milliseconds.\n";
-        // Delay for a specified duration, e.g., 100 milliseconds
-        std::this_thread::sleep_for(std::chrono::milliseconds(200));
+
+        std::this_thread::sleep_for(std::chrono::milliseconds(100));
     }
 
-        if (count > 0) { // To avoid division by zero
-        std::cout << "Average Runtime: " << (totalElapsed / count) << " milliseconds\n";
+    if (count > 0) {
+        double averageRuntime = totalElapsed / count;
+        std::cout << "Average Runtime for " << 2 << " threads: " 
+                  << averageRuntime << " milliseconds\n";
     } else {
         std::cout << "No iterations were run.\n";
     }
@@ -162,4 +162,5 @@ Simulation::~Simulation() {
     for (SeaCreature* creature : seaCreatures) {
         delete creature;
     }
+
 }

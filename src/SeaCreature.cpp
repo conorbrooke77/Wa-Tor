@@ -1,5 +1,6 @@
 #include "SeaCreature.hpp"
 #include <vector>
+#include <iostream>
 
 /**
  * @brief Constructs a new Sea Creature object.
@@ -111,6 +112,11 @@ int SeaCreature::getYPosition() {
 }
 
 string SeaCreature::getType() {
+    if (this == nullptr) {
+        // Handle or report error
+        std::cout << "Error: getType() called on a null SeaCreature object." << std::endl;
+        return "";
+    }
     return type;
 }
 

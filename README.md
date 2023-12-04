@@ -1,0 +1,1 @@
+Was Working originally with mutithreading but I updated the code to improve the SFML and add other logic and it kept crashing at random times bc some area wasn't covered by a mutex, ran out of time to get graphs added for th 13:11 upload time but hopefully will have graphs on github with modified code after deadline. 
