@@ -1,0 +1,43 @@
+\doxysection{Fish.\+hpp}
+\hypertarget{Fish_8hpp_source}{}\label{Fish_8hpp_source}\index{src/Fish.hpp@{src/Fish.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#ifndef\ FISH\_HPP}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#define\ FISH\_HPP}}
+\DoxyCodeLine{00003\ }
+\DoxyCodeLine{00004\ \textcolor{preprocessor}{\#include\ "{}SeaCreature.hpp"{}}}
+\DoxyCodeLine{00005\ }
+\DoxyCodeLine{00006\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classFish}{Fish}}\ :\ \textcolor{keyword}{public}\ \mbox{\hyperlink{classSeaCreature}{SeaCreature}}\ \{}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00011\ \ \ \ \ \textcolor{keywordtype}{bool}\ beenEaten;\ \ \textcolor{comment}{//\ Flag\ to\ indicate\ if\ the\ fish\ has\ been\ eaten\ by\ a\ shark}}
+\DoxyCodeLine{00012\ }
+\DoxyCodeLine{00013\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00014\ \ \ \ }
+\DoxyCodeLine{00015\ \ \ \ \ \mbox{\hyperlink{classFish}{Fish}}(\textcolor{keywordtype}{int}\ xPosition,\ \textcolor{keywordtype}{int}\ yPosition,\ \textcolor{keywordtype}{int}\ reproduceAge);}
+\DoxyCodeLine{00016\ }
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{void}\ move(std::vector<std::vector<SeaCreature*>>\&\ creaturesInGrid)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00018\ }
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{comment}{//\ Adds\ a\ cell\ to\ the\ list\ of\ free\ cells\ if\ it's\ unoccupied}}
+\DoxyCodeLine{00020\ \ \ \ \ \textcolor{keywordtype}{void}\ addIfFreeCell(std::vector<std::pair<int,\ int>>\&\ neighbourhoodCells,\ }
+\DoxyCodeLine{00021\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ xPosition,\ \textcolor{keywordtype}{int}\ yPosition,\ }
+\DoxyCodeLine{00022\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::vector<SeaCreature*>>\&\ creaturesInGrid);}
+\DoxyCodeLine{00023\ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{comment}{//\ Reproduction\ logic\ for\ fish}}
+\DoxyCodeLine{00025\ \ \ \ \ \mbox{\hyperlink{classSeaCreature}{SeaCreature}}*\ reproduce(std::vector<std::vector<SeaCreature*>>\&\ creaturesInGrid)\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{comment}{//\ Checks\ if\ the\ fish\ has\ been\ eaten}}
+\DoxyCodeLine{00028\ \ \ \ \ \textcolor{keywordtype}{bool}\ isEaten()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \ \ \ \ \textcolor{comment}{//\ Marks\ the\ fish\ as\ eaten}}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{void}\ getEaten()\ \textcolor{keyword}{override};}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{comment}{//\ Destructor}}
+\DoxyCodeLine{00034\ \ \ \ \ \mbox{\hyperlink{classFish}{\string~Fish}}();}
+\DoxyCodeLine{00035\ \};}
+\DoxyCodeLine{00036\ }
+\DoxyCodeLine{00037\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

@@ -1,0 +1,72 @@
+\doxysection{Sea\+Creature.\+hpp}
+\hypertarget{SeaCreature_8hpp_source}{}\label{SeaCreature_8hpp_source}\index{src/SeaCreature.hpp@{src/SeaCreature.hpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{preprocessor}{\#include\ <string>}}
+\DoxyCodeLine{00002\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{00003\ \textcolor{preprocessor}{\#include\ <random>}}
+\DoxyCodeLine{00004\ }
+\DoxyCodeLine{00005\ \textcolor{preprocessor}{\#ifndef\ SEACREATURE\_HPP}}
+\DoxyCodeLine{00006\ \textcolor{preprocessor}{\#define\ SEACREATURE\_HPP}}
+\DoxyCodeLine{00007\ }
+\DoxyCodeLine{00008\ \textcolor{keyword}{using\ namespace\ }std;}
+\DoxyCodeLine{00009\ }
+\DoxyCodeLine{00010\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSeaCreature}{SeaCreature}}\ \{}
+\DoxyCodeLine{00011\ \textcolor{keyword}{protected}:}
+\DoxyCodeLine{00012\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ fishCount;\ \textcolor{comment}{//\ Could\ be\ a\ thread\ safety\ concern}}
+\DoxyCodeLine{00013\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ sharkCount;\ \textcolor{comment}{//\ Could\ be\ a\ thread\ safety\ concern}}
+\DoxyCodeLine{00014\ }
+\DoxyCodeLine{00015\ \ \ \ \ \textcolor{keywordtype}{int}\ xPosition,\ yPosition;\ \textcolor{comment}{//\ Positions\ on\ the\ grid}}
+\DoxyCodeLine{00016\ \ \ \ \ \textcolor{keywordtype}{int}\ age;\ \textcolor{comment}{//\ Creature's\ age}}
+\DoxyCodeLine{00017\ \ \ \ \ \textcolor{keywordtype}{bool}\ moved;\ \textcolor{comment}{//\ Flag\ to\ indicate\ if\ the\ creature\ has\ moved}}
+\DoxyCodeLine{00018\ \ \ \ \ \textcolor{keywordtype}{string}\ type;\ \textcolor{comment}{//\ Type\ of\ the\ creature\ (Fish\ or\ Shark)}}
+\DoxyCodeLine{00019\ \ \ \ \ \textcolor{keywordtype}{int}\ reproduceAge;\ \textcolor{comment}{//\ Age\ at\ which\ the\ creature\ can\ reproduce}}
+\DoxyCodeLine{00020\ \ \ \ \ std::mt19937\ randEngine;\ \textcolor{comment}{//\ Random\ engine}}
+\DoxyCodeLine{00021\ }
+\DoxyCodeLine{00022\ \ \ \ \ \mbox{\hyperlink{classSeaCreature}{SeaCreature}}(\textcolor{keywordtype}{int}\ xPosition,\ \textcolor{keywordtype}{int}\ yPosition,\ \textcolor{keywordtype}{int}\ reproduceAge);}
+\DoxyCodeLine{00023\ \ \ \ \ }
+\DoxyCodeLine{00024\ \ \ \ \ \textcolor{comment}{//\ Wrap\ around\ logic\ for\ the\ grid}}
+\DoxyCodeLine{00025\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{classSeaCreature_af65567e7dd8222d843ed36fdd62b8494}{wrapAround}}(\textcolor{keywordtype}{int}\ coordinateOnGrid,\ \textcolor{keywordtype}{int}\ maxCoordinate);}
+\DoxyCodeLine{00026\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSeaCreature_a01392d5b28068511c563742304c2bce5}{moveCreatureOnGrid}}(\textcolor{keywordtype}{int}\ newX,\ \textcolor{keywordtype}{int}\ newY,\ std::vector<std::vector<SeaCreature*>>\&\ creaturesInGrid);}
+\DoxyCodeLine{00027\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSeaCreature_a5d36ed34d3677b600acb64312672ea89}{moveTo}}(\textcolor{keywordtype}{int}\ newX,\ \textcolor{keywordtype}{int}\ newY,\ std::vector<std::vector<SeaCreature*>>\&\ creaturesInGrid);}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ }
+\DoxyCodeLine{00030\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00031\ \ \ \ \ \ \textcolor{keywordtype}{int}\ oldXPosition,\ oldYPosition;\ \textcolor{comment}{//\ Previous\ positions,\ used\ for\ tracking\ movement}}
+\DoxyCodeLine{00032\ }
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ getFishCount()\ \{\ \textcolor{keywordflow}{return}\ fishCount;\ \}}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{int}\ getSharkCount()\ \{\ \textcolor{keywordflow}{return}\ sharkCount;\ \}}
+\DoxyCodeLine{00035\ \ \ \ \ }
+\DoxyCodeLine{00036\ \ \ \ \ \textcolor{keywordtype}{string}\ getType();}
+\DoxyCodeLine{00037\ \ \ \ \ \textcolor{keywordtype}{int}\ getXPosition();}
+\DoxyCodeLine{00038\ \ \ \ \ \textcolor{keywordtype}{int}\ getYPosition();}
+\DoxyCodeLine{00039\ }
+\DoxyCodeLine{00040\ \ \ \ \ \textcolor{keywordtype}{void}\ setXPosition(\textcolor{keywordtype}{int}\ xPosition);}
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ setYPosition(\textcolor{keywordtype}{int}\ yPosition);}
+\DoxyCodeLine{00042\ }
+\DoxyCodeLine{00043\ \ \ \ \ \textcolor{keywordtype}{bool}\ \mbox{\hyperlink{classSeaCreature_a4ad3859cd415d985f7b3afc46278b8e0}{updateState}}();\ \textcolor{comment}{//\ Moved\ update\ state}}
+\DoxyCodeLine{00044\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSeaCreature_afefa6a43557c9079b35149c8967cae86}{setMoved}}(\textcolor{keywordtype}{bool}\ move);\ \textcolor{comment}{//\ Set\ the\ moved\ flag}}
+\DoxyCodeLine{00045\ }
+\DoxyCodeLine{00046\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSeaCreature_aa2f5394a22fc8f7a5f641cec048ba454}{updateAge}}();\ \textcolor{comment}{//\ Update\ the\ age\ of\ the\ creature}}
+\DoxyCodeLine{00047\ \ \ \ \ \textcolor{keywordtype}{int}\ getAge();\ }
+\DoxyCodeLine{00048\ \ \ \ \ \textcolor{keywordtype}{int}\ getReproduceAge();\ }
+\DoxyCodeLine{00049\ \ \ \ \ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{classSeaCreature_a78e3781235d85ccb7ae3f06de9470feb}{resetAge}}();\ \textcolor{comment}{//\ Reset\ the\ age\ (typically\ after\ reproduction)}}
+\DoxyCodeLine{00050\ }
+\DoxyCodeLine{00051\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ isEaten()\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \}\ \textcolor{comment}{//\ Virtual\ method\ to\ check\ if\ creature\ is\ eaten}}
+\DoxyCodeLine{00052\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ getEaten()\ \{\}\ \textcolor{comment}{//\ Virtual\ method\ to\ mark\ creature\ as\ eaten}}
+\DoxyCodeLine{00053\ }
+\DoxyCodeLine{00054\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ depleteEnergy()\ \{\}\ \textcolor{comment}{//\ Virtual\ method\ for\ depleting\ energy\ (specific\ to\ Sharks)}}
+\DoxyCodeLine{00055\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{bool}\ isStarved()\ \{\ \textcolor{keywordflow}{return}\ \textcolor{keyword}{false};\ \}}
+\DoxyCodeLine{00056\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{int}\ getEnergy()\ \{\ \textcolor{keywordflow}{return}\ 1;\ \}}
+\DoxyCodeLine{00057\ }
+\DoxyCodeLine{00058\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classSeaCreature}{SeaCreature}}*\ reproduce(std::vector<std::vector<SeaCreature*>>\&\ creaturesInGrid)\ =\ 0;\ \textcolor{comment}{//\ Thread\ safety\ concern:\ modifies\ shared\ grid.}}
+\DoxyCodeLine{00059\ }
+\DoxyCodeLine{00060\ \ \ \ \ \textcolor{keyword}{virtual}\ \textcolor{keywordtype}{void}\ move(std::vector<std::vector<SeaCreature*>>\&\ creaturesInGrid)\ =\ 0;\ \textcolor{comment}{//\ Thread\ safety\ concern:\ modifies\ shared\ grid.}}
+\DoxyCodeLine{00061\ }
+\DoxyCodeLine{00062\ \ \ \ \ \textcolor{comment}{//\ Virtual\ destructor}}
+\DoxyCodeLine{00063\ \ \ \ \ \textcolor{keyword}{virtual}\ \mbox{\hyperlink{classSeaCreature}{\string~SeaCreature}}()\ \{\}}
+\DoxyCodeLine{00064\ }
+\DoxyCodeLine{00065\ \};}
+\DoxyCodeLine{00066\ \textcolor{preprocessor}{\#endif}}
+
+\end{DoxyCode}

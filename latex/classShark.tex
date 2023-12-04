@@ -1,0 +1,171 @@
+\doxysection{Shark Class Reference}
+\hypertarget{classShark}{}\label{classShark}\index{Shark@{Shark}}
+Inheritance diagram for Shark\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classShark}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classShark_a813547d970dcc4a384e5b8afd253329e}\label{classShark_a813547d970dcc4a384e5b8afd253329e} 
+{\bfseries Shark} (int x\+Position, int y\+Position, int reproduce\+Age)
+\item 
+void \mbox{\hyperlink{classShark_af3493cd83c2bef013a4872f5eab2cff7}{move}} (std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{classSeaCreature}{Sea\+Creature}} \texorpdfstring{$\ast$}{*} $>$ $>$ \&creatures\+In\+Grid) override
+\item 
+\Hypertarget{classShark_a8af28ec2e95bf8dbf12f992314d2947e}\label{classShark_a8af28ec2e95bf8dbf12f992314d2947e} 
+void {\bfseries find\+Fish} (std\+::vector$<$ std\+::pair$<$ int, int $>$ $>$ \&neighbourhood\+Cells, std\+::vector$<$ std\+::pair$<$ int, int $>$ $>$ \&cells\+With\+Fish, int x\+Position, int y\+Position, std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{classSeaCreature}{Sea\+Creature}} \texorpdfstring{$\ast$}{*} $>$ $>$ \&creatures\+In\+Grid)
+\item 
+\mbox{\hyperlink{classSeaCreature}{Sea\+Creature}} \texorpdfstring{$\ast$}{*} \mbox{\hyperlink{classShark_ae9df58722b87f1565e008cc47b5e4708}{reproduce}} (std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{classSeaCreature}{Sea\+Creature}} \texorpdfstring{$\ast$}{*} $>$ $>$ \&creatures\+In\+Grid) override
+\item 
+void \mbox{\hyperlink{classShark_a435cdb19588be89ede7a0c5450762bf8}{deplete\+Energy}} () override
+\item 
+int \mbox{\hyperlink{classShark_afbf431f110f0b79234ce44210a6fa2a2}{get\+Energy}} () override
+\item 
+\Hypertarget{classShark_a33914ce269401a99dfcee10c5ce96939}\label{classShark_a33914ce269401a99dfcee10c5ce96939} 
+void {\bfseries set\+Energy} (int energy)
+\item 
+\Hypertarget{classShark_a1bbfb9aa639df5b7e6dd7c868914e910}\label{classShark_a1bbfb9aa639df5b7e6dd7c868914e910} 
+void {\bfseries eat\+Fish} (int fishX, int fishY, std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{classSeaCreature}{Sea\+Creature}} \texorpdfstring{$\ast$}{*} $>$ $>$ \&creatures\+In\+Grid)
+\item 
+bool \mbox{\hyperlink{classShark_a3ffe6418dee6bb763dfe97056c122032}{is\+Starved}} () override
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Member Functions inherited from \mbox{\hyperlink{classSeaCreature}{Sea\+Creature}}}
+\begin{DoxyCompactItemize}
+\item 
+string {\bfseries get\+Type} ()
+\item 
+int {\bfseries get\+XPosition} ()
+\item 
+int {\bfseries get\+YPosition} ()
+\item 
+void {\bfseries set\+XPosition} (int x\+Position)
+\item 
+void {\bfseries set\+YPosition} (int y\+Position)
+\item 
+bool \mbox{\hyperlink{classSeaCreature_a4ad3859cd415d985f7b3afc46278b8e0}{update\+State}} ()
+\begin{DoxyCompactList}\small\item\em Updates and returns the movement state of the creature. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSeaCreature_afefa6a43557c9079b35149c8967cae86}{set\+Moved}} (bool move)
+\begin{DoxyCompactList}\small\item\em Sets the moved status of the creature. \end{DoxyCompactList}\item 
+void {\bfseries update\+Age} ()
+\begin{DoxyCompactList}\small\item\em Increments the age of the creature. \end{DoxyCompactList}\item 
+int {\bfseries get\+Age} ()
+\item 
+int {\bfseries get\+Reproduce\+Age} ()
+\item 
+void {\bfseries reset\+Age} ()
+\begin{DoxyCompactList}\small\item\em Resets the age of the creature to zero. \end{DoxyCompactList}\item 
+virtual bool {\bfseries is\+Eaten} ()
+\item 
+virtual void {\bfseries get\+Eaten} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Additional Inherited Members}
+\doxysubsection*{Static Public Member Functions inherited from \mbox{\hyperlink{classSeaCreature}{Sea\+Creature}}}
+\begin{DoxyCompactItemize}
+\item 
+static int {\bfseries get\+Fish\+Count} ()
+\item 
+static int {\bfseries get\+Shark\+Count} ()
+\end{DoxyCompactItemize}
+\doxysubsection*{Public Attributes inherited from \mbox{\hyperlink{classSeaCreature}{Sea\+Creature}}}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries old\+XPosition}
+\item 
+int {\bfseries old\+YPosition}
+\end{DoxyCompactItemize}
+\doxysubsection*{Protected Member Functions inherited from \mbox{\hyperlink{classSeaCreature}{Sea\+Creature}}}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSeaCreature_a7fbe3b2904980e8ecd5007b5a05c4a82}{Sea\+Creature}} (int x\+Position, int y\+Position, int reproduce\+Age)
+\begin{DoxyCompactList}\small\item\em Constructs a new Sea Creature object. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classSeaCreature_af65567e7dd8222d843ed36fdd62b8494}{wrap\+Around}} (int coordinate\+On\+Grid, int max\+Coordinate)
+\begin{DoxyCompactList}\small\item\em Wraps around the coordinate to ensure it stays within grid bounds. \end{DoxyCompactList}\item 
+void {\bfseries move\+Creature\+On\+Grid} (int newX, int newY, std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{classSeaCreature}{Sea\+Creature}} \texorpdfstring{$\ast$}{*} $>$ $>$ \&creatures\+In\+Grid)
+\begin{DoxyCompactList}\small\item\em Moves the creature on the grid, updating the grid\textquotesingle{}s state. \end{DoxyCompactList}\item 
+void {\bfseries move\+To} (int newX, int newY, std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{classSeaCreature}{Sea\+Creature}} \texorpdfstring{$\ast$}{*} $>$ $>$ \&creatures\+In\+Grid)
+\begin{DoxyCompactList}\small\item\em Moves the creature to a new position on the grid. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Protected Attributes inherited from \mbox{\hyperlink{classSeaCreature}{Sea\+Creature}}}
+\begin{DoxyCompactItemize}
+\item 
+int {\bfseries x\+Position}
+\item 
+int {\bfseries y\+Position}
+\item 
+int {\bfseries age}
+\item 
+bool {\bfseries moved}
+\item 
+string {\bfseries type}
+\item 
+int {\bfseries reproduce\+Age}
+\item 
+std\+::mt19937 {\bfseries rand\+Engine}
+\end{DoxyCompactItemize}
+\doxysubsection*{Static Protected Attributes inherited from \mbox{\hyperlink{classSeaCreature}{Sea\+Creature}}}
+\begin{DoxyCompactItemize}
+\item 
+static int {\bfseries fish\+Count} = 0
+\item 
+static int {\bfseries shark\+Count} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classShark_a435cdb19588be89ede7a0c5450762bf8}\label{classShark_a435cdb19588be89ede7a0c5450762bf8} 
+\index{Shark@{Shark}!depleteEnergy@{depleteEnergy}}
+\index{depleteEnergy@{depleteEnergy}!Shark@{Shark}}
+\doxysubsubsection{\texorpdfstring{depleteEnergy()}{depleteEnergy()}}
+{\footnotesize\ttfamily void Shark\+::deplete\+Energy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classSeaCreature}{Sea\+Creature}}.
+
+\Hypertarget{classShark_afbf431f110f0b79234ce44210a6fa2a2}\label{classShark_afbf431f110f0b79234ce44210a6fa2a2} 
+\index{Shark@{Shark}!getEnergy@{getEnergy}}
+\index{getEnergy@{getEnergy}!Shark@{Shark}}
+\doxysubsubsection{\texorpdfstring{getEnergy()}{getEnergy()}}
+{\footnotesize\ttfamily int Shark\+::get\+Energy (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classSeaCreature}{Sea\+Creature}}.
+
+\Hypertarget{classShark_a3ffe6418dee6bb763dfe97056c122032}\label{classShark_a3ffe6418dee6bb763dfe97056c122032} 
+\index{Shark@{Shark}!isStarved@{isStarved}}
+\index{isStarved@{isStarved}!Shark@{Shark}}
+\doxysubsubsection{\texorpdfstring{isStarved()}{isStarved()}}
+{\footnotesize\ttfamily bool Shark\+::is\+Starved (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Reimplemented from \mbox{\hyperlink{classSeaCreature}{Sea\+Creature}}.
+
+\Hypertarget{classShark_af3493cd83c2bef013a4872f5eab2cff7}\label{classShark_af3493cd83c2bef013a4872f5eab2cff7} 
+\index{Shark@{Shark}!move@{move}}
+\index{move@{move}!Shark@{Shark}}
+\doxysubsubsection{\texorpdfstring{move()}{move()}}
+{\footnotesize\ttfamily void Shark\+::move (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{classSeaCreature}{Sea\+Creature}} \texorpdfstring{$\ast$}{*} $>$ $>$ \&}]{creatures\+In\+Grid }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classSeaCreature}{Sea\+Creature}}.
+
+\Hypertarget{classShark_ae9df58722b87f1565e008cc47b5e4708}\label{classShark_ae9df58722b87f1565e008cc47b5e4708} 
+\index{Shark@{Shark}!reproduce@{reproduce}}
+\index{reproduce@{reproduce}!Shark@{Shark}}
+\doxysubsubsection{\texorpdfstring{reproduce()}{reproduce()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{classSeaCreature}{Sea\+Creature}} \texorpdfstring{$\ast$}{*} Shark\+::reproduce (\begin{DoxyParamCaption}\item[{std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{classSeaCreature}{Sea\+Creature}} \texorpdfstring{$\ast$}{*} $>$ $>$ \&}]{creatures\+In\+Grid }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [override]}, {\ttfamily [virtual]}}
+
+
+
+Implements \mbox{\hyperlink{classSeaCreature}{Sea\+Creature}}.
+
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/Shark.\+hpp\item 
+src/Shark.\+cpp\end{DoxyCompactItemize}

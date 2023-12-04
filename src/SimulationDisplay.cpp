@@ -1,12 +1,5 @@
 // Commentary: 
 // 
-// 
-// 
-// 
-// 
-// 
-// 
-// 
 // This program is free software: you can redistribute it and/or modify
 // it under the terms of the GNU General Public License as published by
 // the Free Software Foundation, either version 3 of the License, or (at
@@ -37,18 +30,23 @@ class SimulationDisplay {
 private:
     int xdimension;
     int ydimension;
-    int windowXSize;
-    int windowYSize;
+    const int WINDOW_X_SIZE = 900;
+    const int WINDOW_Y_SIZE = 1000;
+
     std::vector<std::vector<RectangleShape>> simulationGrid;
+    std::vector<std::pair<int, int>> cellsToReset;
+    RenderWindow window;
+    Font font;
 
     void initializeGrid() {
-        int cellXSize = windowXSize / xdimension;
-        int cellYSize = windowYSize / ydimension;
+        int cellXSize = WINDOW_X_SIZE / xdimension;
+        int cellYSize = (WINDOW_Y_SIZE-100) / ydimension;
         simulationGrid.resize(xdimension, std::vector<RectangleShape>(ydimension));
+        font.loadFromFile("src/Roboto-Regular.ttf");
 
         for (int i = 0; i < xdimension; ++i) {
             for (int k = 0; k < ydimension; ++k) {
-                simulationGrid[i][k].setSize(Vector2f(cellXSize, cellYSize)); // Consider using cellXSize and cellYSize
+                simulationGrid[i][k].setSize(Vector2f(cellXSize, cellYSize));
                 simulationGrid[i][k].setPosition(i * cellXSize, k * cellYSize);
             }
         }
@@ -56,68 +54,112 @@ private:
 
 public:
 
-    SimulationDisplay(int xdimension, int ydimension, int gridSize) {
-        this->xdimension = xdimension;
-        this->ydimension = ydimension; 
+    SimulationDisplay(int gridSize) {
+        xdimension = gridSize;
+        ydimension = gridSize; 
 
-        windowXSize = gridSize;
-        windowYSize = gridSize;
+        window.create(VideoMode(WINDOW_X_SIZE, WINDOW_Y_SIZE), "SFML Wa-Tor world");
         initializeGrid();
     }
         
-    void updateGrid(std::vector<SeaCreature*> seaCreatures) {
+    void updateGrid(const vector<vector<SeaCreature*>>& grid) {
+        
+        #pragma omp parallel
+        {
+            std::vector<std::pair<int, int>> localCellsToReset;
 
-        // Clear the grid to set it to a default state
-        for (int i = 0; i < xdimension; ++i) {
-            for (int j = 0; j < ydimension; ++j) {
-                simulationGrid[i][j].setFillColor(sf::Color::Blue); // Default color for empty cells
-            }
-        }
+            #pragma omp for nowait
+            for (int i = 0; i < grid.size(); ++i) {
+                for (int j = 0; j < grid[i].size(); ++j) {
+                    SeaCreature* creature = grid[i][j];
+                    if (creature != nullptr && creature->updateState()) {
+                        // Update cell color based on the creature type
+                        if (creature->getType() == "FISH")
+                            if (creature->isEaten())
+                                simulationGrid[i][j].setFillColor(sf::Color::Blue);
+                            else
+                                simulationGrid[i][j].setFillColor(sf::Color::Green);
+                        else if (creature->getType() == "SHARK") {
+                            if (creature->isStarved())
+                                simulationGrid[i][j].setFillColor(sf::Color::Blue);
+                            else
+                                simulationGrid[i][j].setFillColor(sf::Color::Red);
+                        }
 
-            // Update based on sea creatures
-        for (SeaCreature* creature : seaCreatures) {
-            int x = creature->getXPosition();
-            int y = creature->getYPosition();
-
-            cout << creature->getType() << endl;
-
-            if (creature->getType() == "FISH")
-                simulationGrid[x][y].setFillColor(sf::Color::Green);
-            else
-                simulationGrid[x][y].setFillColor(sf::Color::Red);
-        }
-    }
-
-    void renderWindow() {
-        RenderWindow window(VideoMode(windowXSize, windowYSize), "SFML Wa-Tor world");
-
-        while (window.isOpen()) {
-            Event event;
-            while (window.pollEvent(event)) {
-                if (event.type == Event::Closed)
-                    window.close();
-            }
-
-            for (const auto& row : simulationGrid) {
-                for (const auto& cell : row) {
-                    window.draw(cell);
+                        if (creature->oldXPosition != -1)
+                            localCellsToReset.push_back({creature->oldXPosition, creature->oldYPosition});
+                    }
                 }
             }
-            window.display();
+            #pragma omp critical
+            cellsToReset.insert(cellsToReset.end(), localCellsToReset.begin(), localCellsToReset.end());
         }
     }
 
-    int getXDimension() const { 
-        return xdimension; 
+    void initializeRenderWindow() {
+        for (int i = 0; i < simulationGrid.size(); i++) {
+            for (int j = 0; j < simulationGrid[i].size(); j++) {
+                simulationGrid[i][j].setFillColor(sf::Color::Blue); // Set each cell to blue
+                window.draw(simulationGrid[i][j]);
+            }
+        }
     }
-    int getYDimension() const { 
-        return ydimension; 
+
+    void renderWindow(const vector<vector<SeaCreature*>>& grid, int fishPopulation, int sharkPopulation) {
+        Event event;
+        while (window.pollEvent(event)) {
+            if (event.type == Event::Closed) {
+                std::cout << "Closing window" << std::endl;
+                window.close();
+            }
+        }
+
+        for (int i = 0; i < simulationGrid.size(); i++) {
+            for (int j = 0; j < simulationGrid[i].size(); j++) {
+                SeaCreature* creature = grid[i][j];
+                if (creature != nullptr && creature->updateState()) {
+                    window.draw(simulationGrid[i][j]);  // Draw only changed cells
+                    creature->setMoved(false); // Reset the changed flag
+                }
+            }
+        }
+
+            // Reset the cells to blue
+        for (auto& position : cellsToReset) {
+            simulationGrid[position.first][position.second].setFillColor(sf::Color::Blue);
+            window.draw(simulationGrid[position.first][position.second]); // Optionally draw them immediately
+            cellsToReset.clear();
+        }
+        sf::RectangleShape clearArea(sf::Vector2f(window.getSize().x, 100));
+        clearArea.setPosition(0, window.getSize().y - 100);
+        clearArea.setFillColor(sf::Color::Black);  // Set the color to the background color of your window
+
+        // Draw the clearArea rectangle over the bottom 100 pixels
+        window.draw(clearArea);
+
+        // Draw population scores
+        sf::Text fishText;
+        fishText.setFont(font);
+        fishText.setString("Fish Population: " + std::to_string(fishPopulation));
+        fishText.setCharacterSize(24);
+        fishText.setFillColor(sf::Color::White);
+        fishText.setPosition(30, window.getSize().y - 100);
+
+        sf::Text sharkText;
+        sharkText.setFont(font);
+        sharkText.setString("Shark Population: " + std::to_string(sharkPopulation));
+        sharkText.setCharacterSize(24); 
+        sharkText.setFillColor(sf::Color::White);
+        sharkText.setPosition(30, window.getSize().y - 70);
+
+        window.draw(fishText);
+        window.draw(sharkText);
+
+        window.display();
     }
-    int getWindowWidth() const { 
-        return windowXSize; 
-    }
-    int getWindowHeight() const { 
-        return windowYSize; 
+
+    bool isWindowOpen() {
+        return window.isOpen();
     }
 
 };

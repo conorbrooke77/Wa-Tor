@@ -1,0 +1,199 @@
+\doxysection{Sea\+Creature Class Reference}
+\hypertarget{classSeaCreature}{}\label{classSeaCreature}\index{SeaCreature@{SeaCreature}}
+Inheritance diagram for Sea\+Creature\+:\begin{figure}[H]
+\begin{center}
+\leavevmode
+\includegraphics[height=2.000000cm]{classSeaCreature}
+\end{center}
+\end{figure}
+\doxysubsubsection*{Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSeaCreature_a1612b6e77ca4520f1ce37a2b67c18a66}\label{classSeaCreature_a1612b6e77ca4520f1ce37a2b67c18a66} 
+string {\bfseries get\+Type} ()
+\item 
+\Hypertarget{classSeaCreature_a735bc5ceb64b9f1e6f4d86e5525fc427}\label{classSeaCreature_a735bc5ceb64b9f1e6f4d86e5525fc427} 
+int {\bfseries get\+XPosition} ()
+\item 
+\Hypertarget{classSeaCreature_ae5bc5310bdd4984bb6502614fc1567cd}\label{classSeaCreature_ae5bc5310bdd4984bb6502614fc1567cd} 
+int {\bfseries get\+YPosition} ()
+\item 
+\Hypertarget{classSeaCreature_a94c378af06c3c33aa21a9448ea01df53}\label{classSeaCreature_a94c378af06c3c33aa21a9448ea01df53} 
+void {\bfseries set\+XPosition} (int x\+Position)
+\item 
+\Hypertarget{classSeaCreature_aa4531f504c07f6d55a7951d11d044a16}\label{classSeaCreature_aa4531f504c07f6d55a7951d11d044a16} 
+void {\bfseries set\+YPosition} (int y\+Position)
+\item 
+bool \mbox{\hyperlink{classSeaCreature_a4ad3859cd415d985f7b3afc46278b8e0}{update\+State}} ()
+\begin{DoxyCompactList}\small\item\em Updates and returns the movement state of the creature. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{classSeaCreature_afefa6a43557c9079b35149c8967cae86}{set\+Moved}} (bool move)
+\begin{DoxyCompactList}\small\item\em Sets the moved status of the creature. \end{DoxyCompactList}\item 
+\Hypertarget{classSeaCreature_aa2f5394a22fc8f7a5f641cec048ba454}\label{classSeaCreature_aa2f5394a22fc8f7a5f641cec048ba454} 
+void {\bfseries update\+Age} ()
+\begin{DoxyCompactList}\small\item\em Increments the age of the creature. \end{DoxyCompactList}\item 
+\Hypertarget{classSeaCreature_a4798e1e5ef2e363f479ca6acfb30146c}\label{classSeaCreature_a4798e1e5ef2e363f479ca6acfb30146c} 
+int {\bfseries get\+Age} ()
+\item 
+\Hypertarget{classSeaCreature_a8ec902c8c9319ed52d1b13a6075dad30}\label{classSeaCreature_a8ec902c8c9319ed52d1b13a6075dad30} 
+int {\bfseries get\+Reproduce\+Age} ()
+\item 
+\Hypertarget{classSeaCreature_a78e3781235d85ccb7ae3f06de9470feb}\label{classSeaCreature_a78e3781235d85ccb7ae3f06de9470feb} 
+void {\bfseries reset\+Age} ()
+\begin{DoxyCompactList}\small\item\em Resets the age of the creature to zero. \end{DoxyCompactList}\item 
+\Hypertarget{classSeaCreature_a5a6ef8ddbb4c2d61213cff61503fe286}\label{classSeaCreature_a5a6ef8ddbb4c2d61213cff61503fe286} 
+virtual bool {\bfseries is\+Eaten} ()
+\item 
+\Hypertarget{classSeaCreature_abaef7b0955b20500ec36ddaed86884bf}\label{classSeaCreature_abaef7b0955b20500ec36ddaed86884bf} 
+virtual void {\bfseries get\+Eaten} ()
+\item 
+\Hypertarget{classSeaCreature_a4f4f63ba794d90ba235b491e3db17711}\label{classSeaCreature_a4f4f63ba794d90ba235b491e3db17711} 
+virtual void {\bfseries deplete\+Energy} ()
+\item 
+\Hypertarget{classSeaCreature_aa694544f688eccd65265a8cfe3f91b9e}\label{classSeaCreature_aa694544f688eccd65265a8cfe3f91b9e} 
+virtual bool {\bfseries is\+Starved} ()
+\item 
+\Hypertarget{classSeaCreature_a5154b1d0a8c8413fab21acc9d8556913}\label{classSeaCreature_a5154b1d0a8c8413fab21acc9d8556913} 
+virtual int {\bfseries get\+Energy} ()
+\item 
+\Hypertarget{classSeaCreature_a66f40964d6ddd2150314b197241c68e3}\label{classSeaCreature_a66f40964d6ddd2150314b197241c68e3} 
+virtual \mbox{\hyperlink{classSeaCreature}{Sea\+Creature}} \texorpdfstring{$\ast$}{*} {\bfseries reproduce} (std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{classSeaCreature}{Sea\+Creature}} \texorpdfstring{$\ast$}{*} $>$ $>$ \&creatures\+In\+Grid)=0
+\item 
+\Hypertarget{classSeaCreature_ab484b56f809b7c40234a4139638bf710}\label{classSeaCreature_ab484b56f809b7c40234a4139638bf710} 
+virtual void {\bfseries move} (std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{classSeaCreature}{Sea\+Creature}} \texorpdfstring{$\ast$}{*} $>$ $>$ \&creatures\+In\+Grid)=0
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Public Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSeaCreature_af15c31d04701ff794660d791a005ea54}\label{classSeaCreature_af15c31d04701ff794660d791a005ea54} 
+static int {\bfseries get\+Fish\+Count} ()
+\item 
+\Hypertarget{classSeaCreature_aad331c3dfafdc96f5cad850be0764fe9}\label{classSeaCreature_aad331c3dfafdc96f5cad850be0764fe9} 
+static int {\bfseries get\+Shark\+Count} ()
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Public Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSeaCreature_aa6cb40c3b97216b538bd8e418523dc5e}\label{classSeaCreature_aa6cb40c3b97216b538bd8e418523dc5e} 
+int {\bfseries old\+XPosition}
+\item 
+\Hypertarget{classSeaCreature_a9eedff4e46048d90bed483304b23b282}\label{classSeaCreature_a9eedff4e46048d90bed483304b23b282} 
+int {\bfseries old\+YPosition}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Member Functions}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{classSeaCreature_a7fbe3b2904980e8ecd5007b5a05c4a82}{Sea\+Creature}} (int x\+Position, int y\+Position, int reproduce\+Age)
+\begin{DoxyCompactList}\small\item\em Constructs a new Sea Creature object. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{classSeaCreature_af65567e7dd8222d843ed36fdd62b8494}{wrap\+Around}} (int coordinate\+On\+Grid, int max\+Coordinate)
+\begin{DoxyCompactList}\small\item\em Wraps around the coordinate to ensure it stays within grid bounds. \end{DoxyCompactList}\item 
+\Hypertarget{classSeaCreature_a01392d5b28068511c563742304c2bce5}\label{classSeaCreature_a01392d5b28068511c563742304c2bce5} 
+void {\bfseries move\+Creature\+On\+Grid} (int newX, int newY, std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{classSeaCreature}{Sea\+Creature}} \texorpdfstring{$\ast$}{*} $>$ $>$ \&creatures\+In\+Grid)
+\begin{DoxyCompactList}\small\item\em Moves the creature on the grid, updating the grid\textquotesingle{}s state. \end{DoxyCompactList}\item 
+\Hypertarget{classSeaCreature_a5d36ed34d3677b600acb64312672ea89}\label{classSeaCreature_a5d36ed34d3677b600acb64312672ea89} 
+void {\bfseries move\+To} (int newX, int newY, std\+::vector$<$ std\+::vector$<$ \mbox{\hyperlink{classSeaCreature}{Sea\+Creature}} \texorpdfstring{$\ast$}{*} $>$ $>$ \&creatures\+In\+Grid)
+\begin{DoxyCompactList}\small\item\em Moves the creature to a new position on the grid. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSeaCreature_ac9f1456db1f06d6ddbcb50aa6f2e5e03}\label{classSeaCreature_ac9f1456db1f06d6ddbcb50aa6f2e5e03} 
+int {\bfseries x\+Position}
+\item 
+\Hypertarget{classSeaCreature_a0728e8d1b2da6fbbff480e35495fb19e}\label{classSeaCreature_a0728e8d1b2da6fbbff480e35495fb19e} 
+int {\bfseries y\+Position}
+\item 
+\Hypertarget{classSeaCreature_af1b4c7f632f15ec76e0c6542fbd4c1db}\label{classSeaCreature_af1b4c7f632f15ec76e0c6542fbd4c1db} 
+int {\bfseries age}
+\item 
+\Hypertarget{classSeaCreature_a1a7df9173ac8413244bdcc9b77dce945}\label{classSeaCreature_a1a7df9173ac8413244bdcc9b77dce945} 
+bool {\bfseries moved}
+\item 
+\Hypertarget{classSeaCreature_a2867d5b4ef950cd0e27f132401e8de91}\label{classSeaCreature_a2867d5b4ef950cd0e27f132401e8de91} 
+string {\bfseries type}
+\item 
+\Hypertarget{classSeaCreature_a7a1d35fb6f64c0d53b8c167532911d67}\label{classSeaCreature_a7a1d35fb6f64c0d53b8c167532911d67} 
+int {\bfseries reproduce\+Age}
+\item 
+\Hypertarget{classSeaCreature_a293045e22aaef966bb395c86da623a7b}\label{classSeaCreature_a293045e22aaef966bb395c86da623a7b} 
+std\+::mt19937 {\bfseries rand\+Engine}
+\end{DoxyCompactItemize}
+\doxysubsubsection*{Static Protected Attributes}
+\begin{DoxyCompactItemize}
+\item 
+\Hypertarget{classSeaCreature_a40ec1c51b3f2f6df0e97179e19091aff}\label{classSeaCreature_a40ec1c51b3f2f6df0e97179e19091aff} 
+static int {\bfseries fish\+Count} = 0
+\item 
+\Hypertarget{classSeaCreature_ab9047e31be559b2f5bc4a654f0cd7567}\label{classSeaCreature_ab9047e31be559b2f5bc4a654f0cd7567} 
+static int {\bfseries shark\+Count} = 0
+\end{DoxyCompactItemize}
+
+
+\doxysubsection{Constructor \& Destructor Documentation}
+\Hypertarget{classSeaCreature_a7fbe3b2904980e8ecd5007b5a05c4a82}\label{classSeaCreature_a7fbe3b2904980e8ecd5007b5a05c4a82} 
+\index{SeaCreature@{SeaCreature}!SeaCreature@{SeaCreature}}
+\index{SeaCreature@{SeaCreature}!SeaCreature@{SeaCreature}}
+\doxysubsubsection{\texorpdfstring{SeaCreature()}{SeaCreature()}}
+{\footnotesize\ttfamily Sea\+Creature\+::\+Sea\+Creature (\begin{DoxyParamCaption}\item[{int}]{x\+Position,  }\item[{int}]{y\+Position,  }\item[{int}]{reproduce\+Age }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Constructs a new Sea Creature object. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em x\+Position} & Initial x position of the creature. \\
+\hline
+{\em y\+Position} & Initial y position of the creature. \\
+\hline
+{\em reproduce\+Age} & Age at which the creature can reproduce. \\
+\hline
+\end{DoxyParams}
+
+
+\doxysubsection{Member Function Documentation}
+\Hypertarget{classSeaCreature_afefa6a43557c9079b35149c8967cae86}\label{classSeaCreature_afefa6a43557c9079b35149c8967cae86} 
+\index{SeaCreature@{SeaCreature}!setMoved@{setMoved}}
+\index{setMoved@{setMoved}!SeaCreature@{SeaCreature}}
+\doxysubsubsection{\texorpdfstring{setMoved()}{setMoved()}}
+{\footnotesize\ttfamily void Sea\+Creature\+::set\+Moved (\begin{DoxyParamCaption}\item[{bool}]{move }\end{DoxyParamCaption})}
+
+
+
+Sets the moved status of the creature. 
+
+
+\begin{DoxyParams}{Parameters}
+{\em move} & Boolean indicating whether the creature has moved. \\
+\hline
+\end{DoxyParams}
+\Hypertarget{classSeaCreature_a4ad3859cd415d985f7b3afc46278b8e0}\label{classSeaCreature_a4ad3859cd415d985f7b3afc46278b8e0} 
+\index{SeaCreature@{SeaCreature}!updateState@{updateState}}
+\index{updateState@{updateState}!SeaCreature@{SeaCreature}}
+\doxysubsubsection{\texorpdfstring{updateState()}{updateState()}}
+{\footnotesize\ttfamily bool Sea\+Creature\+::update\+State (\begin{DoxyParamCaption}{ }\end{DoxyParamCaption})}
+
+
+
+Updates and returns the movement state of the creature. 
+
+\begin{DoxyReturn}{Returns}
+bool True if the creature has moved, false otherwise. 
+\end{DoxyReturn}
+\Hypertarget{classSeaCreature_af65567e7dd8222d843ed36fdd62b8494}\label{classSeaCreature_af65567e7dd8222d843ed36fdd62b8494} 
+\index{SeaCreature@{SeaCreature}!wrapAround@{wrapAround}}
+\index{wrapAround@{wrapAround}!SeaCreature@{SeaCreature}}
+\doxysubsubsection{\texorpdfstring{wrapAround()}{wrapAround()}}
+{\footnotesize\ttfamily int Sea\+Creature\+::wrap\+Around (\begin{DoxyParamCaption}\item[{int}]{coordinate\+On\+Grid,  }\item[{int}]{max\+Coordinate }\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [protected]}}
+
+
+
+Wraps around the coordinate to ensure it stays within grid bounds. 
+
+\begin{DoxyReturn}{Returns}
+int Wrapped around coordinate. 
+\end{DoxyReturn}
+
+
+The documentation for this class was generated from the following files\+:\begin{DoxyCompactItemize}
+\item 
+src/Sea\+Creature.\+hpp\item 
+src/Sea\+Creature.\+cpp\end{DoxyCompactItemize}

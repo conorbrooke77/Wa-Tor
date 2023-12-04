@@ -1,0 +1,171 @@
+\doxysection{Simulation\+Display.\+cpp}
+\hypertarget{SimulationDisplay_8cpp_source}{}\label{SimulationDisplay_8cpp_source}\index{src/SimulationDisplay.cpp@{src/SimulationDisplay.cpp}}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{00001\ \textcolor{comment}{//\ Commentary:\ }}
+\DoxyCodeLine{00002\ \textcolor{comment}{//\ }}
+\DoxyCodeLine{00003\ \textcolor{comment}{//\ This\ program\ is\ free\ software:\ you\ can\ redistribute\ it\ and/or\ modify}}
+\DoxyCodeLine{00004\ \textcolor{comment}{//\ it\ under\ the\ terms\ of\ the\ GNU\ General\ Public\ License\ as\ published\ by}}
+\DoxyCodeLine{00005\ \textcolor{comment}{//\ the\ Free\ Software\ Foundation,\ either\ version\ 3\ of\ the\ License,\ or\ (at}}
+\DoxyCodeLine{00006\ \textcolor{comment}{//\ your\ option)\ any\ later\ version.}}
+\DoxyCodeLine{00007\ \textcolor{comment}{//\ }}
+\DoxyCodeLine{00008\ \textcolor{comment}{//\ This\ program\ is\ distributed\ in\ the\ hope\ that\ it\ will\ be\ useful,\ but}}
+\DoxyCodeLine{00009\ \textcolor{comment}{//\ WITHOUT\ ANY\ WARRANTY;\ without\ even\ the\ implied\ warranty\ of}}
+\DoxyCodeLine{00010\ \textcolor{comment}{//\ MERCHANTABILITY\ or\ FITNESS\ FOR\ A\ PARTICULAR\ PURPOSE.\ \ See\ the\ GNU}}
+\DoxyCodeLine{00011\ \textcolor{comment}{//\ General\ Public\ License\ for\ more\ details.}}
+\DoxyCodeLine{00012\ \textcolor{comment}{//\ }}
+\DoxyCodeLine{00013\ \textcolor{comment}{//\ You\ should\ have\ received\ a\ copy\ of\ the\ GNU\ General\ Public\ License}}
+\DoxyCodeLine{00014\ \textcolor{comment}{//\ along\ with\ GNU\ Emacs.\ \ If\ not,\ see\ <http://www.gnu.org/licenses/>.}}
+\DoxyCodeLine{00015\ \textcolor{comment}{//\ }}
+\DoxyCodeLine{00016\ \textcolor{comment}{//\ some\ helpful\ code\ here!}}
+\DoxyCodeLine{00017\ \textcolor{comment}{//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++}}
+\DoxyCodeLine{00018\ \textcolor{comment}{//\ https://www.sfml-\/dev.org/tutorials/2.5/start-\/linux.php}}
+\DoxyCodeLine{00019\ \textcolor{comment}{//\ https://learnsfml.com/}}
+\DoxyCodeLine{00020\ \textcolor{comment}{//+++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++}}
+\DoxyCodeLine{00021\ \textcolor{comment}{//\ Code:}}
+\DoxyCodeLine{00022\ }
+\DoxyCodeLine{00023\ \textcolor{preprocessor}{\#include\ <SFML/Graphics.hpp>}}
+\DoxyCodeLine{00024\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{00025\ \textcolor{preprocessor}{\#include\ "{}SeaCreature.hpp"{}}}
+\DoxyCodeLine{00026\ }
+\DoxyCodeLine{00027\ \textcolor{keyword}{using\ namespace\ }sf;}
+\DoxyCodeLine{00028\ }
+\DoxyCodeLine{00029\ \textcolor{keyword}{class\ }\mbox{\hyperlink{classSimulationDisplay}{SimulationDisplay}}\ \{}
+\DoxyCodeLine{00030\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{00031\ \ \ \ \ \textcolor{keywordtype}{int}\ xdimension;}
+\DoxyCodeLine{00032\ \ \ \ \ \textcolor{keywordtype}{int}\ ydimension;}
+\DoxyCodeLine{00033\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ WINDOW\_X\_SIZE\ =\ 900;}
+\DoxyCodeLine{00034\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ WINDOW\_Y\_SIZE\ =\ 1000;}
+\DoxyCodeLine{00035\ }
+\DoxyCodeLine{00036\ \ \ \ \ std::vector<std::vector<RectangleShape>>\ simulationGrid;}
+\DoxyCodeLine{00037\ \ \ \ \ std::vector<std::pair<int,\ int>>\ cellsToReset;}
+\DoxyCodeLine{00038\ \ \ \ \ RenderWindow\ window;}
+\DoxyCodeLine{00039\ \ \ \ \ Font\ font;}
+\DoxyCodeLine{00040\ }
+\DoxyCodeLine{00041\ \ \ \ \ \textcolor{keywordtype}{void}\ initializeGrid()\ \{}
+\DoxyCodeLine{00042\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ cellXSize\ =\ WINDOW\_X\_SIZE\ /\ xdimension;}
+\DoxyCodeLine{00043\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ cellYSize\ =\ (WINDOW\_Y\_SIZE-\/100)\ /\ ydimension;}
+\DoxyCodeLine{00044\ \ \ \ \ \ \ \ \ simulationGrid.resize(xdimension,\ std::vector<RectangleShape>(ydimension));}
+\DoxyCodeLine{00045\ \ \ \ \ \ \ \ \ font.loadFromFile(\textcolor{stringliteral}{"{}src/Roboto-\/Regular.ttf"{}});}
+\DoxyCodeLine{00046\ }
+\DoxyCodeLine{00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ xdimension;\ ++i)\ \{}
+\DoxyCodeLine{00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ k\ =\ 0;\ k\ <\ ydimension;\ ++k)\ \{}
+\DoxyCodeLine{00049\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ simulationGrid[i][k].setSize(Vector2f(cellXSize,\ cellYSize));}
+\DoxyCodeLine{00050\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ simulationGrid[i][k].setPosition(i\ *\ cellXSize,\ k\ *\ cellYSize);}
+\DoxyCodeLine{00051\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00052\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00053\ \ \ \ \ \}}
+\DoxyCodeLine{00054\ }
+\DoxyCodeLine{00055\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{00056\ }
+\DoxyCodeLine{00057\ \ \ \ \ \mbox{\hyperlink{classSimulationDisplay}{SimulationDisplay}}(\textcolor{keywordtype}{int}\ gridSize)\ \{}
+\DoxyCodeLine{00058\ \ \ \ \ \ \ \ \ xdimension\ =\ gridSize;}
+\DoxyCodeLine{00059\ \ \ \ \ \ \ \ \ ydimension\ =\ gridSize;\ }
+\DoxyCodeLine{00060\ }
+\DoxyCodeLine{00061\ \ \ \ \ \ \ \ \ window.create(VideoMode(WINDOW\_X\_SIZE,\ WINDOW\_Y\_SIZE),\ \textcolor{stringliteral}{"{}SFML\ Wa-\/Tor\ world"{}});}
+\DoxyCodeLine{00062\ \ \ \ \ \ \ \ \ initializeGrid();}
+\DoxyCodeLine{00063\ \ \ \ \ \}}
+\DoxyCodeLine{00064\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00065\ \ \ \ \ \textcolor{keywordtype}{void}\ updateGrid(\textcolor{keyword}{const}\ vector<vector<SeaCreature*>>\&\ grid)\ \{}
+\DoxyCodeLine{00066\ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{00067\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \#pragma\ omp\ parallel}}
+\DoxyCodeLine{00068\ \ \ \ \ \ \ \ \ \{}
+\DoxyCodeLine{00069\ \ \ \ \ \ \ \ \ \ \ \ \ std::vector<std::pair<int,\ int>>\ localCellsToReset;}
+\DoxyCodeLine{00070\ }
+\DoxyCodeLine{00071\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \#pragma\ omp\ for\ nowait}}
+\DoxyCodeLine{00072\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ grid.size();\ ++i)\ \{}
+\DoxyCodeLine{00073\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ grid[i].size();\ ++j)\ \{}
+\DoxyCodeLine{00074\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSeaCreature}{SeaCreature}}*\ creature\ =\ grid[i][j];}
+\DoxyCodeLine{00075\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (creature\ !=\ \textcolor{keyword}{nullptr}\ \&\&\ creature-\/>\mbox{\hyperlink{classSeaCreature_a4ad3859cd415d985f7b3afc46278b8e0}{updateState}}())\ \{}
+\DoxyCodeLine{00076\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Update\ cell\ color\ based\ on\ the\ creature\ type}}
+\DoxyCodeLine{00077\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (creature-\/>getType()\ ==\ \textcolor{stringliteral}{"{}FISH"{}})}
+\DoxyCodeLine{00078\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (creature-\/>isEaten())}
+\DoxyCodeLine{00079\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ simulationGrid[i][j].setFillColor(sf::Color::Blue);}
+\DoxyCodeLine{00080\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00081\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ simulationGrid[i][j].setFillColor(sf::Color::Green);}
+\DoxyCodeLine{00082\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (creature-\/>getType()\ ==\ \textcolor{stringliteral}{"{}SHARK"{}})\ \{}
+\DoxyCodeLine{00083\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (creature-\/>isStarved())}
+\DoxyCodeLine{00084\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ simulationGrid[i][j].setFillColor(sf::Color::Blue);}
+\DoxyCodeLine{00085\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{else}}
+\DoxyCodeLine{00086\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ simulationGrid[i][j].setFillColor(sf::Color::Red);}
+\DoxyCodeLine{00087\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00088\ }
+\DoxyCodeLine{00089\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (creature-\/>oldXPosition\ !=\ -\/1)}
+\DoxyCodeLine{00090\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ localCellsToReset.push\_back(\{creature-\/>oldXPosition,\ creature-\/>oldYPosition\});}
+\DoxyCodeLine{00091\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00092\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00093\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00094\ \textcolor{preprocessor}{\ \ \ \ \ \ \ \ \ \ \ \ \#pragma\ omp\ critical}}
+\DoxyCodeLine{00095\ \ \ \ \ \ \ \ \ \ \ \ \ cellsToReset.insert(cellsToReset.end(),\ localCellsToReset.begin(),\ localCellsToReset.end());}
+\DoxyCodeLine{00096\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00097\ \ \ \ \ \}}
+\DoxyCodeLine{00098\ }
+\DoxyCodeLine{00099\ \ \ \ \ \textcolor{keywordtype}{void}\ initializeRenderWindow()\ \{}
+\DoxyCodeLine{00100\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ simulationGrid.size();\ i++)\ \{}
+\DoxyCodeLine{00101\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ simulationGrid[i].size();\ j++)\ \{}
+\DoxyCodeLine{00102\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ simulationGrid[i][j].setFillColor(sf::Color::Blue);\ \textcolor{comment}{//\ Set\ each\ cell\ to\ blue}}
+\DoxyCodeLine{00103\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ window.draw(simulationGrid[i][j]);}
+\DoxyCodeLine{00104\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00105\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00106\ \ \ \ \ \}}
+\DoxyCodeLine{00107\ }
+\DoxyCodeLine{00108\ \ \ \ \ \textcolor{keywordtype}{void}\ renderWindow(\textcolor{keyword}{const}\ vector<vector<SeaCreature*>>\&\ grid,\ \textcolor{keywordtype}{int}\ fishPopulation,\ \textcolor{keywordtype}{int}\ sharkPopulation)\ \{}
+\DoxyCodeLine{00109\ \ \ \ \ \ \ \ \ Event\ event;}
+\DoxyCodeLine{00110\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{while}\ (window.pollEvent(event))\ \{}
+\DoxyCodeLine{00111\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (event.type\ ==\ Event::Closed)\ \{}
+\DoxyCodeLine{00112\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Closing\ window"{}}\ <<\ std::endl;}
+\DoxyCodeLine{00113\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ window.close();}
+\DoxyCodeLine{00114\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00115\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00116\ }
+\DoxyCodeLine{00117\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ simulationGrid.size();\ i++)\ \{}
+\DoxyCodeLine{00118\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ j\ =\ 0;\ j\ <\ simulationGrid[i].size();\ j++)\ \{}
+\DoxyCodeLine{00119\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{classSeaCreature}{SeaCreature}}*\ creature\ =\ grid[i][j];}
+\DoxyCodeLine{00120\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{if}\ (creature\ !=\ \textcolor{keyword}{nullptr}\ \&\&\ creature-\/>\mbox{\hyperlink{classSeaCreature_a4ad3859cd415d985f7b3afc46278b8e0}{updateState}}())\ \{}
+\DoxyCodeLine{00121\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ window.draw(simulationGrid[i][j]);\ \ \textcolor{comment}{//\ Draw\ only\ changed\ cells}}
+\DoxyCodeLine{00122\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ creature-\/>\mbox{\hyperlink{classSeaCreature_afefa6a43557c9079b35149c8967cae86}{setMoved}}(\textcolor{keyword}{false});\ \textcolor{comment}{//\ Reset\ the\ changed\ flag}}
+\DoxyCodeLine{00123\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00124\ \ \ \ \ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00125\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00126\ }
+\DoxyCodeLine{00127\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Reset\ the\ cells\ to\ blue}}
+\DoxyCodeLine{00128\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ position\ :\ cellsToReset)\ \{}
+\DoxyCodeLine{00129\ \ \ \ \ \ \ \ \ \ \ \ \ simulationGrid[position.first][position.second].setFillColor(sf::Color::Blue);}
+\DoxyCodeLine{00130\ \ \ \ \ \ \ \ \ \ \ \ \ window.draw(simulationGrid[position.first][position.second]);\ \textcolor{comment}{//\ Optionally\ draw\ them\ immediately}}
+\DoxyCodeLine{00131\ \ \ \ \ \ \ \ \ \ \ \ \ cellsToReset.clear();}
+\DoxyCodeLine{00132\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{00133\ \ \ \ \ \ \ \ \ sf::RectangleShape\ clearArea(sf::Vector2f(window.getSize().x,\ 100));}
+\DoxyCodeLine{00134\ \ \ \ \ \ \ \ \ clearArea.setPosition(0,\ window.getSize().y\ -\/\ 100);}
+\DoxyCodeLine{00135\ \ \ \ \ \ \ \ \ clearArea.setFillColor(sf::Color::Black);\ \ \textcolor{comment}{//\ Set\ the\ color\ to\ the\ background\ color\ of\ your\ window}}
+\DoxyCodeLine{00136\ }
+\DoxyCodeLine{00137\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ the\ clearArea\ rectangle\ over\ the\ bottom\ 100\ pixels}}
+\DoxyCodeLine{00138\ \ \ \ \ \ \ \ \ window.draw(clearArea);}
+\DoxyCodeLine{00139\ }
+\DoxyCodeLine{00140\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Draw\ population\ scores}}
+\DoxyCodeLine{00141\ \ \ \ \ \ \ \ \ sf::Text\ fishText;}
+\DoxyCodeLine{00142\ \ \ \ \ \ \ \ \ fishText.setFont(font);}
+\DoxyCodeLine{00143\ \ \ \ \ \ \ \ \ fishText.setString(\textcolor{stringliteral}{"{}Fish\ Population:\ "{}}\ +\ std::to\_string(fishPopulation));}
+\DoxyCodeLine{00144\ \ \ \ \ \ \ \ \ fishText.setCharacterSize(24);}
+\DoxyCodeLine{00145\ \ \ \ \ \ \ \ \ fishText.setFillColor(sf::Color::White);}
+\DoxyCodeLine{00146\ \ \ \ \ \ \ \ \ fishText.setPosition(30,\ window.getSize().y\ -\/\ 100);}
+\DoxyCodeLine{00147\ }
+\DoxyCodeLine{00148\ \ \ \ \ \ \ \ \ sf::Text\ sharkText;}
+\DoxyCodeLine{00149\ \ \ \ \ \ \ \ \ sharkText.setFont(font);}
+\DoxyCodeLine{00150\ \ \ \ \ \ \ \ \ sharkText.setString(\textcolor{stringliteral}{"{}Shark\ Population:\ "{}}\ +\ std::to\_string(sharkPopulation));}
+\DoxyCodeLine{00151\ \ \ \ \ \ \ \ \ sharkText.setCharacterSize(24);\ }
+\DoxyCodeLine{00152\ \ \ \ \ \ \ \ \ sharkText.setFillColor(sf::Color::White);}
+\DoxyCodeLine{00153\ \ \ \ \ \ \ \ \ sharkText.setPosition(30,\ window.getSize().y\ -\/\ 70);}
+\DoxyCodeLine{00154\ }
+\DoxyCodeLine{00155\ \ \ \ \ \ \ \ \ window.draw(fishText);}
+\DoxyCodeLine{00156\ \ \ \ \ \ \ \ \ window.draw(sharkText);}
+\DoxyCodeLine{00157\ }
+\DoxyCodeLine{00158\ \ \ \ \ \ \ \ \ window.display();}
+\DoxyCodeLine{00159\ \ \ \ \ \}}
+\DoxyCodeLine{00160\ }
+\DoxyCodeLine{00161\ \ \ \ \ \textcolor{keywordtype}{bool}\ isWindowOpen()\ \{}
+\DoxyCodeLine{00162\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{return}\ window.isOpen();}
+\DoxyCodeLine{00163\ \ \ \ \ \}}
+\DoxyCodeLine{00164\ }
+\DoxyCodeLine{00165\ \};}
+
+\end{DoxyCode}

@@ -1,16 +1,15 @@
 
 #include "src/Simulation.hpp"
 #include <iostream>
+#include <omp.h>
 
 using namespace std;
 
 int main() {
 
-    Simulation simulation(10, 5, 0, 0, 0, 800, 1);
+    Simulation simulation(1200, 2600, 10, 20, 100, 900, 1);
 
-    simulation.displaySeaCreatures();
-
-    simulation.display();
+    simulation.run();
     
-    return 0; // Indicate successful completion
+    return 0;
 }

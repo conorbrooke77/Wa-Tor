@@ -11,11 +11,11 @@ SFMLDIR = $(LIBDIR)/SFML
 SFMLINC = $(SFMLDIR)/include
 SFMLLIB = $(SFMLDIR)/lib
 
-LDFLAGS = -L/usr/lib
+LDFLAGS = -L/usr/lib -fopenmp
 LDLIBS = -lsfml-graphics -lsfml-window -lsfml-system
 
 # Compiler Flags
-CFLAGS = -std=c++11 -I/usr/include
+CFLAGS = -std=c++11 -I/usr/include -g -fopenmp
 
 # Executable Name
 EXEC = WaTorSimulation
